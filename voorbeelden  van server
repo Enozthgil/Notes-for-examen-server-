@@ -1,0 +1,161 @@
+
+Testrapport Windows Server 2019
+Persoonlijke gegevens
+Naam:
+Klas of groep:
+Datum:
+
+1. Inventarisatie
+Verken de netwerkomgeving door onderstaande informatie te verzamelen.
+
+Systeemgegevens
+Servernaam: (Vul hier de naam van de server in. Je kunt dit controleren via "This PC" -> Eigenschappen op de server.)
+RAM: (Bijvoorbeeld "16 GB". Controleer in Task Manager > Performance > Memory.)
+Processor Type: (Bijvoorbeeld "Intel Xeon E3-1220" of "AMD Ryzen 7".)
+Processor Aantal Cores: (Bijvoorbeeld "4 cores". Te controleren in Task Manager > Performance > CPU.)
+Processor Kloksnelheid: (Bijvoorbeeld "2.80 GHz".)
+Opslaggegevens
+Opslagcapaciteit (GB): (Bijvoorbeeld "500 GB". Te vinden onder Disk Management of via Eigenschappen van "This PC".)
+Partities: (Bijvoorbeeld "C: (OS)", "D: (Data)", enz.)
+Driveletters en Capaciteit: (Bijv. "C: 256 GB, D: 244 GB". Te vinden in Disk Management.)
+Fysieke locatie Shared folders en Driveletters: (Bijvoorbeeld: "\SERVERNAME\Data" of "E:\Shared Folders".)
+Netwerk-/Domeingegevens
+Actieve netwerkadapter: (Bijvoorbeeld "Ethernet 1" of "Wi-Fi". Te zien via "Network Connections".)
+MAC-address: (Bijvoorbeeld "00:1A:2B:3C:4D:5E". Te zien via "ipconfig /all" in Command Prompt.)
+IP Address: (Bijvoorbeeld "192.168.1.10". Check via "ipconfig /all".)
+Subnetmasker: (Bijvoorbeeld "255.255.255.0". Te vinden samen met je IP via "ipconfig /all".)
+Domain: (Bijvoorbeeld "example.local". Te zien via Eigenschappen van "This PC".)
+OU’s (Organizational Units): (Bijvoorbeeld "Users", "Computers", "Finance". Te bekijken in Active Directory Users and Computers.)
+2. Benchmarking van prestaties
+Server (IDLE State)
+Maak een screenshot van de Task Manager (bij Performance) wanneer er geen activiteit op de server plaatsvindt.
+
+Server (Tijdens datatransfer)
+Maak een screenshot van de Task Manager (bij Performance) tijdens intensieve activiteiten zoals het overzetten van bestanden.
+
+3. Beleidsafspraken controleren, testen of activeren
+Tabel:
+Controleer of de volgende beleidsafspraken correct zijn ingesteld.
+
+Beleidsafspraak	Resultaat (OK/X)	Opmerking
+1. Standaard bureaublad achtergrond		(Bijv. Set via Group Policy -> User Configuration -> Desktop Settings.)
+2. Control panel is uitgeschakeld		(Controleer via Group Policy en bevestig met een client test.)
+3. Wachtwoord lengte: minimaal 10 karakters		(Gecontroleerd via Policy Management: Account Policies > Password.)
+4. Complexe wachtwoorden verplicht		(Te vinden in GPO onder Password Policy.)
+5. Shared folders automatisch verbonden		(Controleer de loginscript of GPO.)
+6. Command prompt geblokkeerd		(Group Policy -> System Restrictions.)
+7. Registry editor uitgeschakeld		(Controleer met GPO.)
+8. Schermvergrendeling: na 10 min inactiviteit		(Group Policy -> Security Settings > Screensaver Timeout.)
+9. USB-stick gebruik geblokkeerd		(GPO -> Administrative Templates -> Removable Storage Access.)
+10. Automatisch link naar financiële app		(Gecontroleerd via script of GPO.)
+11. Microsoft Store uitgeschakeld		(Controle via Group Policy: Computer -> Windows Components.)
+12. 7-Zip geïnstalleerd op Clients		(Instellingen of Deployment logs controleren.)
+13. HP Printer automatisch geïnstalleerd		(Controleren via Print Management of GPO.)
+4. Testbeschrijvingen
+Kies een beleidsafspraak waar je een afwijking ziet en voer een test uit. Beschrijf deze als volgt:
+
+
+Opdracht 3: Beleidsafspraken controleren of instellen via GPO
+Hier is een overzicht van de stappen die je in GPMC kunt uitvoeren om de beleidsafspraken in opdracht 3 te configureren of controleren:
+
+1. Standaard bureaubladachtergrond
+Pad:
+User Configuration > Administrative Templates > Desktop > Desktop Wallpaper
+Beschrijving: Gebruik deze instelling om een standaardachtergrond voor alle gebruikers af te dwingen.
+Actie: Configureer het pad naar de afbeelding (bijvoorbeeld een bedrijfslogo op de gedeelde schijf).
+
+2. Control Panel uitschakelen
+Pad:
+User Configuration > Administrative Templates > Control Panel > Prohibit access to Control Panel and PC settings
+Beschrijving: Hiermee kun je de toegang tot het Configuratiescherm volledig uitschakelen.
+Actie: Zet deze instelling op Enabled.
+
+3. Minimale wachtwoordlengte instellen
+Pad:
+Computer Configuration > Windows Settings > Security Settings > Account Policies > Password Policy
+Beschrijving: Stel hier de minimale wachtwoordlengte in (bijvoorbeeld 10 tekens).
+Actie: Dubbelklik op Minimum password length en stel deze in op 10.
+
+4. Complexe wachtwoorden verplichten
+Pad:
+Computer Configuration > Windows Settings > Security Settings > Account Policies > Password Policy
+Beschrijving: Zet de instelling Password must meet complexity requirements op Enabled. Dit dwingt complexe wachtwoorden af (minimaal één hoofdletter, een cijfer en een symbool).
+
+5. Shared folders automatisch verbinden
+Pad:
+User Configuration > Preferences > Windows Settings > Drive Maps
+Beschrijving: Hiermee kun je automatisch netwerkschijven verbinden voor gebruikers.
+Actie: Voeg een nieuwe drive mapping toe, geef het gedeelde netwerkpad op (bijvoorbeeld \\servernaam\sharenaam) en wijs er een drive-letter aan toe.
+
+6. Command Prompt blokkeren
+Pad:
+User Configuration > Administrative Templates > System > Prevent access to the command prompt
+Beschrijving: Hiermee kun je de toegang tot de command prompt blokkeren.
+Actie: Zet deze instelling op Enabled.
+
+7. Registry Editor uitschakelen
+Pad:
+User Configuration > Administrative Templates > System > Prevent access to registry editing tools
+Beschrijving: Hiermee blokkeer je de toegang tot de Windows Registry Editor.
+Actie: Zet deze instelling op Enabled en selecteer de optie om ook het uitvoeren van scripts te voorkomen.
+
+8. Scherm vergrendelen na 10 minuten
+Pad:
+User Configuration > Administrative Templates > Control Panel > Personalization > Password protect the screen saver
+en
+User Configuration > Administrative Templates > Control Panel > Personalization > Screen saver timeout
+Beschrijving: Hiermee wordt het scherm van inactieve gebruikers na 10 minuten automatisch vergrendeld.
+Actie: Zet beide instellingen op Enabled en stel de timeout in op 600 seconden (10 minuten).
+
+9. USB-stick blokkeren
+Pad:
+Computer Configuration > Administrative Templates > System > Removable Storage Access
+Beschrijving: Blokkeer de toegang tot USB-sticks en andere verwijderbare opslagmedia.
+Actie: Schakel de instelling All Removable Storage classes: Deny all access in.
+
+10. Automatisch link toevoegen naar financiële applicatie
+Pad:
+User Configuration > Preferences > Windows Settings > Shortcuts
+Beschrijving: Hiermee kun je automatisch een snelkoppeling naar de financiële cloud-app op desktops toevoegen.
+Actie: Voeg een nieuwe snelkoppeling toe met het pad of de URL naar de app (bijvoorbeeld: https://app.financieelbedrijf.nl).
+
+11. Microsoft Store uitschakelen
+Pad:
+Computer Configuration > Administrative Templates > Windows Components > Store > Turn off the Store application
+Beschrijving: Hiermee schakel je toegang tot de Microsoft Store uit.
+Actie: Zet deze instelling op Enabled.
+
+12. 7-Zip automatisch installeren op clients
+Pad:
+Computer Configuration > Preferences > Control Panel Settings > Scheduled Tasks
+Beschrijving: Gebruik een taak om 7-Zip automatisch te installeren.
+Actie: Configureer een script (bijvoorbeeld msiexec /i \\servernaam\share\7zsetup.msi /quiet) en voer dit eenmalig uit op alle client-pc's.
+
+13. HP Printer automatisch installeren
+Pad:
+Computer Configuration > Preferences > Control Panel Settings > Printers
+Beschrijving: Voeg een netwerkprinter toe.
+Actie: Configureer de naam van de printer en het netwerkpad (bijvoorbeeld \\printserver\HPLaserJet).
+
+
+Beleidsafspraak <Nr>: <Titel>
+Tools
+Welke tools of methoden heb je gebruikt?
+(Bijvoorbeeld: "Groepsbeleidbeheer (GPMC), Command Prompt, Event Viewer.")
+
+Resultaat
+Beschrijf het resultaat dat je hebt waargenomen.
+Voeg een screenshot toe ter onderbouwing.
+
+Advies
+Op welke schaal (1-3) beoordeel jij een afwijking? Licht toe waarom je dit hebt gekozen:
+
+Licht: Geen urgente impact op gebruikers.
+Middel: Wel impact, maar eenvoudige workaround beschikbaar.
+Zeer kritiek: Directe impact, onderbreking van werkprocessen.
+
+
+
+
+
+na elke gpo
