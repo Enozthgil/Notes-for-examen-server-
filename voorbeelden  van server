@@ -1,9 +1,9 @@
 
 Testrapport Windows Server 2019
-Persoonlijke gegevens
-Naam:
-Klas of groep:
-Datum:
+
+Naam: Luke Mooi
+Klas of groep: AMTA23
+Datum:28-5-2025
 
 1. Inventarisatie
 Verken de netwerkomgeving door onderstaande informatie te verzamelen.
@@ -26,9 +26,12 @@ IP Address: (Bijvoorbeeld "192.168.1.10". Check via "ipconfig /all".)
 Subnetmasker: (Bijvoorbeeld "255.255.255.0". Te vinden samen met je IP via "ipconfig /all".)
 Domain: (Bijvoorbeeld "example.local". Te zien via Eigenschappen van "This PC".)
 OU’s (Organizational Units): (Bijvoorbeeld "Users", "Computers", "Finance". Te bekijken in Active Directory Users and Computers.)
+
+
+
 2. Benchmarking van prestaties
 Server (IDLE State)
-Maak een screenshot van de Task Manager (bij Performance) wanneer er geen activiteit op de server plaatsvindt.
+Maak een screenshot van de Task Manager (bij Performance Monitoring) wanneer er geen activiteit op de server plaatsvindt.
 
 Server (Tijdens datatransfer)
 Maak een screenshot van de Task Manager (bij Performance) tijdens intensieve activiteiten zoals het overzetten van bestanden.
@@ -51,8 +54,7 @@ Beleidsafspraak	Resultaat (OK/X)	Opmerking
 11. Microsoft Store uitgeschakeld		(Controle via Group Policy: Computer -> Windows Components.)
 12. 7-Zip geïnstalleerd op Clients		(Instellingen of Deployment logs controleren.)
 13. HP Printer automatisch geïnstalleerd		(Controleren via Print Management of GPO.)
-4. Testbeschrijvingen
-Kies een beleidsafspraak waar je een afwijking ziet en voer een test uit. Beschrijf deze als volgt:
+
 
 
 Opdracht 3: Beleidsafspraken controleren of instellen via GPO
@@ -136,6 +138,97 @@ Pad:
 Computer Configuration > Preferences > Control Panel Settings > Printers
 Beschrijving: Voeg een netwerkprinter toe.
 Actie: Configureer de naam van de printer en het netwerkpad (bijvoorbeeld \\printserver\HPLaserJet).
+
+
+
+
+
+
+4. Testbeschrijvingen
+Kies een beleidsafspraak waar je een afwijking ziet en voer een test uit. Beschrijf deze als volgt:
+
+Titel
+Control panel is uitgeschakeld
+
+Tools
+Ik heb deze instelling gecontroleerd via Group Policy Management Console (GPMC). Vervolgens ben ik naar de volgende locatie genavigeerd:
+User Configuration > Administrative Templates > Control Panel > Prohibit access to Control Panel and PC settings.
+Daarnaast heb ik via een test op een client-pc gekeken of het Configuratiescherm daadwerkelijk niet toegankelijk was.
+
+Resultaat
+De instelling stond op Enabled, en bij het openen van het Configuratiescherm op een standaard gebruikersaccount verscheen de melding dat toegang is geblokkeerd door de systeembeheerder.
+(Voeg hier een screenshot toe van de foutmelding op de client)
+
+Advies
+Schaal: 2 – Middel
+Als deze instelling niet juist is toegepast, kunnen gebruikers mogelijk systeeminstellingen wijzigen die conflicteren met het netwerkbeleid. Hoewel het geen directe verstoring veroorzaakt, kan het leiden tot ongewenste aanpassingen en veiligheidsrisico's.
+
+Beleidsafspraak 6
+Titel
+Command prompt is geblokkeerd
+
+Tools
+Ik heb deze instelling gecontroleerd via Group Policy Management Console (GPMC) op de volgende locatie:
+User Configuration > Administrative Templates > System > Prevent access to the command prompt.
+Ook heb ik getest of de cmd.exe daadwerkelijk werd geblokkeerd door een client in te loggen en de prompt te openen.
+
+Resultaat
+De instelling stond op Not Configured. Gebruikers konden dus zonder beperking de opdrachtprompt openen en commando's uitvoeren.
+(Voeg hier een screenshot toe van geopende cmd op een gebruikersaccount)
+
+Advies
+Schaal: 3 – Zeer kritiek
+Toegang tot de opdrachtprompt stelt gebruikers in staat systeembestanden te manipuleren of beveiligingsmaatregelen te omzeilen. Dit kan ernstige gevolgen hebben, vooral in een domeinomgeving.
+
+Beleidsafspraak 7
+Titel
+Registry editor is uitgeschakeld op de client PC’s
+
+Tools
+Controle vond plaats via GPMC, onder het pad:
+User Configuration > Administrative Templates > System > Prevent access to registry editing tools.
+Daarna heb ik de Registry Editor getest op een client-pc om te controleren of toegang daadwerkelijk werd geblokkeerd.
+
+Resultaat
+De editor was succesvol geblokkeerd. Bij het openen van regedit.exe verscheen een foutmelding dat deze functie door de beheerder is uitgeschakeld.
+(Voeg hier screenshot toe van foutmelding op client)
+
+Advies
+Schaal: 3 – Zeer kritiek
+Als gebruikers toegang hebben tot de Register-editor, kunnen zij diepgaande systeeminstellingen aanpassen en beveiligingsmaatregelen verwijderen. Dit vormt een ernstig risico voor stabiliteit en veiligheid.
+
+Beleidsafspraak 10
+Titel
+Er wordt automatisch een link aangemaakt naar de Financiële applicatie in de cloud
+
+Tools
+Ik heb dit gecontroleerd via Group Policy Management Console, op de locatie:
+User Configuration > Preferences > Windows Settings > Shortcuts.
+Daarnaast heb ik via een client-pc ingelogd en gekeken of de snelkoppeling correct werd weergegeven op het bureaublad.
+
+Resultaat
+De snelkoppeling werd correct geplaatst op het bureaublad van gebruikers, met directe link naar https://app.financieelbedrijf.nl.
+(Voeg hier screenshot toe van snelkoppeling op Desktop)
+
+Advies
+Schaal: 1 – Licht
+Een ontbrekende snelkoppeling leidt niet tot directe verstoring van werkzaamheden, maar kan het gebruikersgemak verminderen. Eenvoudige workaround beschikbaar (handmatig aanmaken of opnieuw toepassen via GPO).
+
+Beleidsafspraak <Nr>
+Titel
+<Naam>
+
+Tools
+Beschrijf hier hoe je de instelling hebt gevonden en via welke applicaties of menu’s.
+
+Resultaat
+Voeg hier de bevindingen in aan de hand van screenshots of foutmeldingen.
+
+Advies
+Schaal: (1 / 2 / 3)
+Omschrijf hier waarom je deze schaal gekozen hebt op basis van de risico’s voor eindgebruikers of beheer.
+
+
 
 
 Beleidsafspraak <Nr>: <Titel>
