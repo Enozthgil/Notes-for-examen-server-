@@ -345,7 +345,63 @@ Kopiëren
 Bewerken
 Install-WindowsFeature Windows-Server-Backup
 
+🎥 Beleidsafspraak: Video afspelen via shared map
+🧩 Doel:
+Op de client-pc moet je een video kunnen openen vanuit een gedeelde map op de server, bijvoorbeeld:
 
+css
+Kopiëren
+Bewerken
+\\SRV-EXAMEN-01\video
+🔍 Veelvoorkomende problemen en oplossingen
+Probleem	Oplossing
+❌ Geen toegang tot de gedeelde map. Probleem	Oplossing: Controleer NTFS-permissies én Share-permissies op de server. Minimaal “Lezen” geven aan Everyone of een specifieke groep.
+❌ Netwerkpad niet beschikbaar / niet bereikbaar. Probleem	Oplossing:	Zorg dat de client in het domein zit en ping de server. Gebruik ping SRV-EXAMEN-01 op de client.
+❌ Geen rechten om bestand te openen (Access Denied).: Probleem	Oplossing	Geef leestoegang op de .mp4/.avi-bestanden én map via de tab “Security” (eigenschappen van map).
+❌ Video speelt niet af (foutmelding in speler):. Probleem	Oplossing	Installeer VLC Media Player op de client. Windows Media Player kan soms codecs missen.
+❌ Map opent wel, maar video kan niet worden geopend. Probleem	Oplossing:	Test of het bestand corrupt is. Open het bestand eerst op de server zelf om te controleren.
+❌ Gedeelde map werkt niet bij UNC pad (\\...). Probleem	Oplossing:	Probeer eerst handmatig te mappen als netwerkschijf: net use Z: \\SRV-EXAMEN-01\video
+
+✅ Stappenplan test (voor in je examenrapport)
+Maak een gedeelde map op de server:
+
+Locatie: D:\Videos
+
+Rechtsklik > Properties > Sharing > Advanced Sharing > “Share this folder”
+
+Share name: video
+
+Zet permissies goed:
+
+Share-permissions: Geef “Everyone” of “Authenticated Users” minimaal Read
+
+NTFS-permissies (tab “Security”): idem
+
+Zet een videobestand in de map (bijv. voorbeeld.mp4)
+
+Op de client-pc:
+
+Open Verkenner → Ga naar \\SRV-EXAMEN-01\video
+
+Dubbelklik op de video
+
+Als standaardspeler niet werkt: installeer VLC Media Player
+
+📋 Wat zet je in het testrapport?
+Tools:
+Server Manager (voor rechten)
+
+Windows Verkenner (client)
+
+VLC Media Player
+
+Resultaat:
+✅ Video wordt afgespeeld via gedeelde map
+📷 Voeg screenshot toe van client met geopende video
+
+Advies:
+Cijfer: 2 – Middel
+Video-afspeelmogelijkheid is niet kritiek voor systeembeveiliging, maar wel functioneel belangrijk voor instructievideo’s of examencontent.
 
 
 
