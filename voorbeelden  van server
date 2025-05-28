@@ -301,5 +301,52 @@ Zeer kritiek: Directe impact, onderbreking van werkprocessen.
 
 
 
+Windows Server Backup installeren via "Add Roles and Features"
+✅ Stap-voor-stap handleiding (correcte methode)
+Open Server Manager
+
+Start → typ Server Manager → Open
+
+Klik op "Manage" > Add Roles and Features
+
+Kies “Role-based or feature-based installation”
+
+Selecteer de juiste server (bijvoorbeeld: SRV-EXAMEN-01)
+
+Klik door tot “Features”
+(heel belangrijk! Windows Server Backup zit NIET onder Roles, maar onder Features)
+
+Scroll omlaag en vink aan: Windows Server Backup
+
+Klik op Next > Install
+
+Na installatie:
+
+Start → zoek op "Windows Server Backup" → Open het programma
+
+💡 Veelgemaakte fouten in de klas
+Fout	Oplossing
+❌ Studenten zoeken Backup onder “Roles”	✅ Het zit bij Features, niet bij Roles
+❌ Installatie niet afgerond → Backup-tool niet zichtbaar	✅ Herstart Server Manager of de hele server
+❌ Geen rechten om Features te installeren (bij domain setup)	✅ Inloggen als domeinbeheerder of lokaal Administrator
+❌ Proberen backup te maken zonder installatie	✅ Eerst installeren zoals hierboven, daarna via GUI of wbadmin
+❌ Geen disk beschikbaar voor backup	✅ Voeg een tweede schijf of virtuele schijf toe en formatteer die via Disk Management
+
+📸 Bewijs voor je examen (wat je kunt toevoegen)
+Screenshot van het selectiescherm in Add Roles and Features, met “Windows Server Backup” aangevinkt
+
+Screenshot van het programma zelf nadat het is geïnstalleerd (in de zoekbalk openen)
+
+📦 Bonus: Gebruik je liever PowerShell?
+Gebruik dit commando om Windows Server Backup te installeren:
+
+powershell
+Kopiëren
+Bewerken
+Install-WindowsFeature Windows-Server-Backup
+
+
+
+
 
 na elke gpo
