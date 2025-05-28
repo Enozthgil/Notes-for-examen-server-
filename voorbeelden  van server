@@ -243,6 +243,18 @@ Er wordt automatisch een link aangemaakt naar de Financiële applicatie in de cl
 Tools
 Ik heb dit gecontroleerd via Group Policy Management Console, op de locatie:
 User Configuration > Preferences > Windows Settings > Shortcuts.
+
+Bij het aanmaken van de Shortcut in GPO vul je de volgende velden in:
+
+Instelling	In te vullen waarde:
+Action:	Create
+Name:	Financiële Applicatie
+Location:	Desktop
+Target Type:	URL
+Target Path:	https://app.financieelbedrijf.nl
+Start in:	(leeg laten of invullen met %USERPROFILE%)
+Icon file: path	%SystemRoot%\system32\shell32.dll
+Icon index:	14 (of kies een andere als je een ander icoon mooier vindt)
 Daarnaast heb ik via een client-pc ingelogd en gekeken of de snelkoppeling correct werd weergegeven op het bureaublad.
 
 Resultaat
