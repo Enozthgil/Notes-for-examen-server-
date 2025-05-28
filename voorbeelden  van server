@@ -31,10 +31,49 @@ OU’s (Organizational Units): (Bijvoorbeeld "Users", "Computers", "Finance". Te
 
 2. Benchmarking van prestaties
 Server (IDLE State)
+
+
+Counters toevoegen
+Klik op het groene plusje (+) of klik met de rechtermuisknop op de grafiek en kies Add Counters.
+
+Voeg de volgende counters toe om een goed overzicht te krijgen van de serverprestaties in Idle State:
+
+Processor:
+
+% Processor Time (alle cores)
+
+Memory:
+
+Available MBytes
+
+PhysicalDisk:
+
+% Disk Time
+
+System:
+
+Processor Queue Length
+
+Network Interface:
+
+Bytes Received/sec
+
+Bytes Sent/sec (voor netwerkactiviteit)
+
 Maak een screenshot van de Task Manager (bij Performance Monitoring) wanneer er geen activiteit op de server plaatsvindt.
 
 Server (Tijdens datatransfer)
 Maak een screenshot van de Task Manager (bij Performance) tijdens intensieve activiteiten zoals het overzetten van bestanden.
+
+ Hoe doe je dit?
+Start de overdracht:
+
+Gebruik bijvoorbeeld Verkenner op de client om een groot bestand naar de server te kopiëren via een gedeelde map (\servernaam\share).
+
+
+
+
+
 
 3. Beleidsafspraken controleren, testen of activeren
 Tabel:
